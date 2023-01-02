@@ -1,7 +1,10 @@
 package FinalProject;
 
 import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 import FinalProject.SortItemAsc.*;
@@ -25,7 +28,20 @@ public class SortManager {
         System.out.println("13. Height");
         System.out.println("14. Width");
 
-        Collections.sort(list, new SortByNameAsc());
+        Map<String, Comparator> sortMapAsc = new HashMap<>();
+        sortMapAsc.put("Item id", (Item i1, Item i2) -> {return i1.getItemId() - i2.getItemId();});
+        sortMapAsc.put("Name", (Item i1, Item i2) -> {return i1.getName().compareTo(i2.getName());;});
+        sortMapAsc.put("Category", (Item i1, Item i2) -> {return i1.getCategory().compareTo(i2.getCategory());});
+        sortMapAsc.put("Price", (Item i1, Item i2) -> {return Float.compare(i1.getPrice(), i2.getPrice());});
+        sortMapAsc.put("Old price", (Item i1, Item i2) -> {return i1.getOldPrice().compareTo(i2.getOldPrice());});
+        sortMapAsc.put("Sellable Online", (Item i1, Item i2) -> {return Boolean.compare(i1.getSellableOnline(),i2.getSellableOnline());});
+        sortMapAsc.put("Link", (Item i1, Item i2) -> {return i1.getLink().compareTo(i2.getLink());});
+        sortMapAsc.put("Other colours", (Item i1, Item i2) -> {return Boolean.compare(i1.getOtherColors(),i2.getOtherColors());});
+        sortMapAsc.put("Short description", (Item i1, Item i2) -> {return i1.getShortDescription().compareTo(i2.getShortDescription());});
+        sortMapAsc.put("Designer", (Item i1, Item i2) -> {return i1.getDesigner().compareTo(i2.getDesigner());});
+        sortMapAsc.put("Depth", (Item i1, Item i2) -> {return i1.getDepth() - i2.getDepth();;});
+        sortMapAsc.put("Height", (Item i1, Item i2) -> {return i1.getHeight() - i2.getHeight();});
+        sortMapAsc.put("Width", (Item i1, Item i2) -> {return i1.getWidth() - i2.getWidth();});
 
         Scanner sc = new Scanner(System.in);
         int n; 
@@ -49,7 +65,7 @@ public class SortManager {
                     System.out.println("Not Implemented yet");
                     break;
                 case 2:
-                    Collections.sort(list, new SortByItemIdAsc());
+                    Collections.sort(list, sortMapAsc.get("Name"));
                     break;
                 case 3:
                     Collections.sort(list, new SortByNameAsc());
