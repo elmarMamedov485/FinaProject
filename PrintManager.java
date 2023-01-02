@@ -8,7 +8,7 @@ import java.util.Scanner;
 import java.util.Set;
 
 
-public class ListManager {
+public class PrintManager {
 
     //prints entities of a given list
     public static void printList(List<Item> list){
@@ -112,7 +112,7 @@ public class ListManager {
         }
 
         if(s.contains(1)){
-            pritnList(list);
+            printList(list);
         }
         else{
             for(int j = 0 ; j < list.size(); j++){

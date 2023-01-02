@@ -5,9 +5,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
-import FinalProject.SortItemAsc.*;
-import FinalProject.SortItemDsc.*;
-
 public class SortManager {
     public static void sort(List<Item> list){
         System.out.println("Choose field to sort by:");
@@ -26,9 +23,9 @@ public class SortManager {
         System.out.println("13. Height");
         System.out.println("14. Width");
 
-        Map<String, Comparator> sortMapAsc = new HashMap<>();
+        Map<String, Comparator<Item>> sortMapAsc = new HashMap<>();
         sortMapAsc.put("Item id", (Item i1, Item i2) -> {return i1.getItemId() - i2.getItemId();});
-        sortMapAsc.put("Name", (Item i1, Item i2) -> {return i1.getName().compareTo(i2.getName());;});
+        sortMapAsc.put("Name", (Item i1, Item i2) -> {return i1.getName().compareTo(i2.getName());});
         sortMapAsc.put("Category", (Item i1, Item i2) -> {return i1.getCategory().compareTo(i2.getCategory());});
         sortMapAsc.put("Price", (Item i1, Item i2) -> {return Float.compare(i1.getPrice(), i2.getPrice());});
         sortMapAsc.put("Old price", (Item i1, Item i2) -> {return i1.getOldPrice().compareTo(i2.getOldPrice());});
@@ -37,7 +34,7 @@ public class SortManager {
         sortMapAsc.put("Other colours", (Item i1, Item i2) -> {return Boolean.compare(i1.getOtherColors(),i2.getOtherColors());});
         sortMapAsc.put("Short description", (Item i1, Item i2) -> {return i1.getShortDescription().compareTo(i2.getShortDescription());});
         sortMapAsc.put("Designer", (Item i1, Item i2) -> {return i1.getDesigner().compareTo(i2.getDesigner());});
-        sortMapAsc.put("Depth", (Item i1, Item i2) -> {return i1.getDepth() - i2.getDepth();;});
+        sortMapAsc.put("Depth", (Item i1, Item i2) -> {return i1.getDepth() - i2.getDepth();});
         sortMapAsc.put("Height", (Item i1, Item i2) -> {return i1.getHeight() - i2.getHeight();});
         sortMapAsc.put("Width", (Item i1, Item i2) -> {return i1.getWidth() - i2.getWidth();});
 
@@ -60,53 +57,58 @@ public class SortManager {
             case 1:
             switch(n){
                 case 1:
-                    System.out.println("Not Implemented yet");
+                    Comparator.comparing(Item::getItemId).thenComparing(Item::getName)
+                            .thenComparing(Item::getCategory).thenComparing(Item::getPrice)
+                            .thenComparing(Item::getOldPrice).thenComparing(Item::getSellableOnline)
+                            .thenComparing(Item::getLink).thenComparing(Item::getOtherColors)
+                            .thenComparing(Item::getShortDescription).thenComparing(Item::getDesigner)
+                            .thenComparing(Item::getDepth).thenComparing(Item::getHeight).thenComparing(Item::getWidth);
                     break;
                 case 2:
-                    Collections.sort(list, sortMapAsc.get("Name"));
+                    list.sort(sortMapAsc.get("Item id"));
                     break;
                 case 3:
-                    Collections.sort(list, new SortByNameAsc());
+                    list.sort(sortMapAsc.get("Name"));
                     break;
                 case 4:
-                    Collections.sort(list, new SortByCategoryAsc());
+                    list.sort(sortMapAsc.get("Category"));
                     break;
                 case 5:
-                    Collections.sort(list, new SortByPriceAsc());
+                    list.sort(sortMapAsc.get("Price"));
                     break;
                 case 6:
-                    Collections.sort(list, new SortByOldPriceAsc());
+                    list.sort(sortMapAsc.get("Old Price"));
                     break;
                 case 7:
-                    Collections.sort(list, new SortBySellableOnlineAsc());
+                    list.sort(sortMapAsc.get("Sellable Online"));
                     break;
                 case 8:
-                    Collections.sort(list, new SortByLinkAsc());
+                    list.sort(sortMapAsc.get("Link"));
                     break;
                 case 9:
-                    Collections.sort(list, new SortByOtherColorsAsc());
+                    list.sort(sortMapAsc.get("Other colours"));
                     break;
                 case 10:
-                    Collections.sort(list, new SortByShortDescriptionAsc());
+                    list.sort(sortMapAsc.get("Short description"));
                     break;
                 case 11:
-                    Collections.sort(list, new SortByDesignerAsc());
+                    list.sort(sortMapAsc.get("Designer"));
                     break;
                 case 12:
-                    Collections.sort(list, new SortByDepthAsc());
+                    list.sort(sortMapAsc.get("Depth"));
                     break;
                 case 13:
-                    Collections.sort(list, new SortByHeightAsc());
+                    list.sort(sortMapAsc.get("Height"));
                     break;
                 case 14:
-                    Collections.sort(list, new SortByWidthAsc());
+                    list.sort(sortMapAsc.get("Width"));
                     break;
                 default:
                     System.out.println("Wrong number");
             }
                 break;
                 case 2:
-                switch(n){
+                /*switch(n){
                     case 1:
                         System.out.println("Not Implemented yet");
                         break;
@@ -151,7 +153,7 @@ public class SortManager {
                         break;
                     default:
                         System.out.println("Wrong number");
-                }
+                }*/
                 break;
                 default:
                     System.out.println("Wrong number");
