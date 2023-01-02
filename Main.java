@@ -7,6 +7,6 @@ public class Main {
         //ListManager.listRandom(ListManager.convertToList("FinalProject/ikea.csv"));
         List<Item> list = ConvertManager.convertToList("FinalProject/ikea.csv");
         SortManager.sort(list);
-        ListManager.listAll(list);
+        ListManager.printList(list);
     }
 }
