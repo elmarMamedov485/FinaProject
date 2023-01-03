@@ -117,7 +117,7 @@ public class SortManager {
                     list.sort(sortMapAsc.get("Width"));
                     break;
                 default:
-                    System.out.println("Wrong number");
+                    throw new IllegalStateException("Unexpected value: " + n);
             }
                 break;
                 case 2:
@@ -169,11 +169,11 @@ public class SortManager {
                         list.sort(sortMapDsc.get("Width"));
                         break;
                     default:
-                        System.out.println("Wrong number");
+                        throw new IllegalStateException("Unexpected value: " + n);
                 }
                 break;
                 default:
-                    System.out.println("Wrong number");
+                    throw new IllegalStateException("Unexpected value: " + n);
         }
         
     }

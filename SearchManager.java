@@ -35,7 +35,6 @@ public class SearchManager {
                 List<Item> result = list.stream().filter(a -> a.getItemId() == item_id).collect(Collectors.toList());
 
                 return result;
-
             case 2:
                 System.out.println("Enter name:");
                 String name = sc.nextLine();
@@ -123,8 +122,7 @@ public class SearchManager {
                 return result;
 
             default:
-                System.out.println("Wrong number!!!");
-                break;
+                throw new IllegalStateException("Unexpected value: " + n);
         }}catch (InputMismatchException e){
             System.out.println("Wrong input!");
 
