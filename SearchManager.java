@@ -1,10 +1,13 @@
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class SearchManager {
-    public static List<Item> search(List<Item> list){
+    private static  Scanner sc = new Scanner(System.in);
+    private static List<Item> result = new ArrayList<>();
+    private static int menu(){
         System.out.println("Choose field to search by:");
         System.out.println("1. Item id");
         System.out.println("2. Name");
@@ -19,108 +22,166 @@ public class SearchManager {
         System.out.println("11. Depth");
         System.out.println("12. Height");
         System.out.println("13. Width");
+        int n = 0;
+        try {
+           System.out.println("Enter field(number):");
+            n = sc.nextInt();
+        }catch (InputMismatchException e){
+            System.out.println("Wrong input!");
+        }
+        return n;
+    }
 
+    public static List<Item>  searchItemId(List<Item> list){
+        System.out.println("Enter item id: ");
+        int item_id = sc.nextInt();
+
+        List<Item> result = list.stream().filter(a -> a.getItemId() == item_id).collect(Collectors.toList());
+
+        return result;
+    }
+    public static List<Item>  searchName(List<Item> list){
+        System.out.println("Enter name:");
+        String name = sc.nextLine();
+
+        result = list.stream().filter(a -> a.getName().contains(name)).collect(Collectors.toList());
+
+        return result;
+    }
+    public static List<Item>  searchCategory(List<Item> list){
+        System.out.println("Enter category:");
+        String category = sc.nextLine();
+
+        result = list.stream().filter(a -> a.getCategory().contains(category)).collect(Collectors.toList());
+
+        return result;
+    }
+    public static List<Item>  searchPrice(List<Item> list){
+        System.out.println("Enter price: ");
+        float price = sc.nextInt();
+
+        result = list.stream().filter(a -> a.getPrice() == price).collect(Collectors.toList());
+
+        return result;
+    }
+    public static List<Item>  searchOldPrice(List<Item> list){
+        System.out.println("Enter old price:");
+        String old_price = sc.nextLine();
+
+        result = list.stream().filter(a -> a.getOldPrice().contains(old_price)).collect(Collectors.toList());
+
+        return result;
+    }
+    public static List<Item>  searchSellableOnline(List<Item> list){
+        System.out.println("Enter sellable online(true, false):");
+        boolean sellable_online = sc.nextBoolean();
+
+        result = list.stream().filter(a -> Boolean.compare(a.getSellableOnline(), sellable_online) == 0).collect(Collectors.toList());
+
+        return result;
+    }
+    public static List<Item>  searchLink(List<Item> list){
+        System.out.println("Enter link:");
+        String link = sc.nextLine();
+
+        result = list.stream().filter(a -> a.getLink().contains(link)).collect(Collectors.toList());
+
+        return result;
+    }
+    public static List<Item>  searchOtherColours(List<Item> list){
+        System.out.println("Enter other colours(True, False):");
+        boolean other_colours = sc.nextBoolean();
+
+        result = list.stream().filter(a -> Boolean.compare(a.getOtherColors(),other_colours) == 0).collect(Collectors.toList());
+
+        return result;
+    }
+    public static List<Item>  searchShortDescription(List<Item> list){
+        System.out.println("Enter short description:");
+        String short_description =  sc.nextLine();
+
+        result = list.stream().filter(a -> a.getShortDescription().contains(short_description)).collect(Collectors.toList());
+
+        return result;
+    }
+    public static List<Item>  searchDesigner(List<Item> list){
+        System.out.println("Enter designer:");
+        String designer = sc.nextLine();
+
+        result = list.stream().filter(a -> a.getDesigner().contains(designer)).collect(Collectors.toList());
+
+        return result;
+    }
+    public static List<Item>  searchDepth(List<Item> list){
+        System.out.println("Enter depth: ");
+        int depth = sc.nextInt();
+
+        result = list.stream().filter(a -> a.getDepth() == depth).collect(Collectors.toList());
+
+        return result;
+    }
+    public static List<Item>  searchHeight(List<Item> list){
+        System.out.println("Enter height: ");
+        int height = sc.nextInt();
+
+        result = list.stream().filter(a -> a.getHeight() == height).collect(Collectors.toList());
+
+        return result;
+    }
+    public static List<Item>  searchWidth(List<Item> list){
+        System.out.println("Enter width: ");
+        int width = sc.nextInt();
+
+        result = list.stream().filter(a -> a.getWidth() == width).collect(Collectors.toList());
+
+        return result;
+    }
+    public static List<Item> search(List<Item> list){
+        List<Item> searchResult = new ArrayList<>();
         try{
-        Scanner sc = new Scanner(System.in);
-        int n;
+        int n = menu();
 
-        System.out.println("Enter field(number):");
-        n = sc.nextInt();
         sc.nextLine();
         switch(n){
             case 1:
-                System.out.println("Enter item id: ");
-                int item_id = sc.nextInt();
-
-                List<Item> result = list.stream().filter(a -> a.getItemId() == item_id).collect(Collectors.toList());
-
-                return result;
+                searchResult = searchItemId(list);
+                break;
             case 2:
-                System.out.println("Enter name:");
-                String name = sc.nextLine();
-
-                result = list.stream().filter(a -> a.getName().contains(name)).collect(Collectors.toList());
-
-                return result;
+                searchResult = searchName(list);
+                break;
             case 3:
-                System.out.println("Enter old_price:");
-                String category = sc.nextLine();
-
-                result = list.stream().filter(a -> a.getCategory().contains(category)).collect(Collectors.toList());
-
-                return result;
+                searchResult = searchCategory(list);
+                break;
             case 4:
-                System.out.println("Enter price: ");
-                float price = sc.nextInt();
-
-                result = list.stream().filter(a -> a.getPrice() == price).collect(Collectors.toList());
-
-                return result;
+                searchResult = searchPrice(list);
+                break;
             case 5:
-                System.out.println("Enter old price:");
-                String old_price = sc.nextLine();
-
-                result = list.stream().filter(a -> a.getOldPrice().contains(old_price)).collect(Collectors.toList());
-
-                return result;
+                searchResult = searchOldPrice(list);
+                break;
             case 6:
-                System.out.println("Enter sellable online(true, false):");
-                boolean sellable_online = sc.nextBoolean();
-
-                result = list.stream().filter(a -> Boolean.compare(a.getSellableOnline(), sellable_online) == 0).collect(Collectors.toList());
-
-                return result;
+                searchResult = searchSellableOnline(list);
+                break;
             case 7:
-                System.out.println("Enter link:");
-                String link = sc.nextLine();
-
-                result = list.stream().filter(a -> a.getLink().contains(link)).collect(Collectors.toList());
-
-                return result;
+                searchResult = searchLink(list);
+                break;
             case 8:
-                System.out.println("Enter other colours(True, False):");
-                boolean other_colours = sc.nextBoolean();
-
-                result = list.stream().filter(a -> Boolean.compare(a.getOtherColors(),other_colours) == 0).collect(Collectors.toList());
-
-                return result;
+                searchResult = searchOtherColours(list);
+                break;
             case 9:
-                System.out.println("Enter short description:");
-                String short_description =  sc.nextLine();
-
-                result = list.stream().filter(a -> a.getShortDescription().contains(short_description)).collect(Collectors.toList());
-
-                return result;
+                searchResult = searchShortDescription(list);
+                break;
             case 10:
-                System.out.println("Enter designer:");
-                String designer = sc.nextLine();
-
-                result = list.stream().filter(a -> a.getDesigner().contains(designer)).collect(Collectors.toList());
-
-                return result;
+                searchResult = searchDesigner(list);
+                break;
             case 11:
-                System.out.println("Enter depth: ");
-                int depth = sc.nextInt();
-
-               result = list.stream().filter(a -> a.getDepth() == depth).collect(Collectors.toList());
-
-                return result;
+                searchResult = searchDepth(list);
+                break;
             case 12:
-                System.out.println("Enter height: ");
-                int height = sc.nextInt();
-
-                result = list.stream().filter(a -> a.getHeight() == height).collect(Collectors.toList());
-
-                return result;
-
+                searchResult = searchHeight(list);
+                break;
             case 13:
-                System.out.println("Enter width: ");
-                int width = sc.nextInt();
-
-                result = list.stream().filter(a -> a.getWidth() == width).collect(Collectors.toList());
-
-                return result;
-
+                searchResult = searchWidth(list);
+                break;
             default:
                 throw new IllegalStateException("Unexpected value: " + n);
         }}catch (InputMismatchException e){
@@ -128,6 +189,6 @@ public class SearchManager {
 
         }
 
-        return null;
+        return searchResult;
     }
 }
