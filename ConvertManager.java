@@ -12,7 +12,6 @@ public class ConvertManager {
 
         try(FileReader fr = new FileReader(file_name);
             BufferedReader br = new BufferedReader(fr)){
-            //String firstLine = ",item_id,name,category,price,old_price,sellable_online,link,other_colors,short_description,designer,depth,height,width";
             String line = br.readLine();
             
             int i = 0;           

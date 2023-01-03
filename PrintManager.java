@@ -167,7 +167,10 @@ public class PrintManager {
                 }
             }
         }
+    }
 
-        sc.close();
+    public static void listColumnNames(){
+        String firstLine = "item_id, name, category, price, old_price, sellable_online, link, other_colors, short_description, designer, depth, height, width";
+        System.out.println(firstLine);
     }
 }
