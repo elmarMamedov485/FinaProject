@@ -38,6 +38,21 @@ public class SortManager {
         sortMapAsc.put("Height", (Item i1, Item i2) -> {return i1.getHeight() - i2.getHeight();});
         sortMapAsc.put("Width", (Item i1, Item i2) -> {return i1.getWidth() - i2.getWidth();});
 
+        Map<String, Comparator<Item>> sortMapDsc = new HashMap<>();
+        sortMapDsc.put("Item id", (Item i1, Item i2) -> {return i2.getItemId() - i1.getItemId();});
+        sortMapDsc.put("Name", (Item i1, Item i2) -> {return i2.getName().compareTo(i1.getName());});
+        sortMapDsc.put("Category", (Item i1, Item i2) -> {return i2.getCategory().compareTo(i1.getCategory());});
+        sortMapDsc.put("Price", (Item i1, Item i2) -> {return Float.compare(i2.getPrice(), i1.getPrice());});
+        sortMapDsc.put("Old price", (Item i1, Item i2) -> {return i2.getOldPrice().compareTo(i1.getOldPrice());});
+        sortMapDsc.put("Sellable Online", (Item i1, Item i2) -> {return Boolean.compare(i2.getSellableOnline(),i1.getSellableOnline());});
+        sortMapDsc.put("Link", (Item i1, Item i2) -> {return i2.getLink().compareTo(i1.getLink());});
+        sortMapDsc.put("Other colours", (Item i1, Item i2) -> {return Boolean.compare(i2.getOtherColors(),i1.getOtherColors());});
+        sortMapDsc.put("Short description", (Item i1, Item i2) -> {return i2.getShortDescription().compareTo(i1.getShortDescription());});
+        sortMapDsc.put("Designer", (Item i1, Item i2) -> {return i2.getDesigner().compareTo(i1.getDesigner());});
+        sortMapDsc.put("Depth", (Item i1, Item i2) -> {return i2.getDepth() - i1.getDepth();});
+        sortMapDsc.put("Height", (Item i1, Item i2) -> {return i2.getHeight() - i1.getHeight();});
+        sortMapDsc.put("Width", (Item i1, Item i2) -> {return i2.getWidth() - i1.getWidth();});
+
         Scanner sc = new Scanner(System.in);
         int n; 
 
@@ -52,17 +67,17 @@ public class SortManager {
 
         System.out.println("Enter order(number)");
         order = sc.nextInt();
-        sc.close();
+
         switch(order){
             case 1:
             switch(n){
                 case 1:
-                    Comparator.comparing(Item::getItemId).thenComparing(Item::getName)
+                    list.sort(Comparator.comparing(Item::getItemId).thenComparing(Item::getName)
                             .thenComparing(Item::getCategory).thenComparing(Item::getPrice)
                             .thenComparing(Item::getOldPrice).thenComparing(Item::getSellableOnline)
                             .thenComparing(Item::getLink).thenComparing(Item::getOtherColors)
                             .thenComparing(Item::getShortDescription).thenComparing(Item::getDesigner)
-                            .thenComparing(Item::getDepth).thenComparing(Item::getHeight).thenComparing(Item::getWidth);
+                            .thenComparing(Item::getDepth).thenComparing(Item::getHeight).thenComparing(Item::getWidth));
                     break;
                 case 2:
                     list.sort(sortMapAsc.get("Item id"));
@@ -108,52 +123,56 @@ public class SortManager {
             }
                 break;
                 case 2:
-                /*switch(n){
+                switch(n){
                     case 1:
-                        System.out.println("Not Implemented yet");
+                        list.sort(Comparator.comparing(Item::getItemId).thenComparing(Item::getName)
+                                .thenComparing(Item::getCategory).thenComparing(Item::getPrice)
+                                .thenComparing(Item::getOldPrice).thenComparing(Item::getSellableOnline)
+                                .thenComparing(Item::getLink).thenComparing(Item::getOtherColors)
+                                .thenComparing(Item::getShortDescription).thenComparing(Item::getDesigner).reversed());
                         break;
                     case 2:
-                        Collections.sort(list, new SortByItemIdDsc());
+                        list.sort(sortMapDsc.get("Item id"));
                         break;
                     case 3:
-                        Collections.sort(list, new SortByNameDsc());
+                        list.sort(sortMapDsc.get("Name"));
                         break;
                     case 4:
-                        Collections.sort(list, new SortByCategoryDsc());
+                        list.sort(sortMapDsc.get("Category"));
                         break;
                     case 5:
-                        Collections.sort(list, new SortByPriceDsc());
+                        list.sort(sortMapDsc.get("Price"));
                         break;
                     case 6:
-                        Collections.sort(list, new SortByOldPriceDsc());
+                        list.sort(sortMapDsc.get("Old Price"));
                         break;
                     case 7:
-                        Collections.sort(list, new SortBySellableOnlineDsc());
+                        list.sort(sortMapDsc.get("Sellable Online"));
                         break;
                     case 8:
-                        Collections.sort(list, new SortByLinkDsc());
+                        list.sort(sortMapDsc.get("Link"));
                         break;
                     case 9:
-                        Collections.sort(list, new SortByOtherColorsDsc());
+                        list.sort(sortMapDsc.get("Other colours"));
                         break;
                     case 10:
-                        Collections.sort(list, new SortByShortDescriptionDsc());
+                        list.sort(sortMapDsc.get("Short description"));
                         break;
                     case 11:
-                        Collections.sort(list, new SortByDesignerDsc());
+                        list.sort(sortMapDsc.get("Designer"));
                         break;
                     case 12:
-                        Collections.sort(list, new SortByDepthDsc());
+                        list.sort(sortMapDsc.get("Depth"));
                         break;
                     case 13:
-                        Collections.sort(list, new SortByHeightDsc());
+                        list.sort(sortMapDsc.get("Height"));
                         break;
                     case 14:
-                        Collections.sort(list, new SortByWidthDsc());
+                        list.sort(sortMapDsc.get("Width"));
                         break;
                     default:
                         System.out.println("Wrong number");
-                }*/
+                }
                 break;
                 default:
                     System.out.println("Wrong number");
