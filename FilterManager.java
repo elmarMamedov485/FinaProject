@@ -2,7 +2,9 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class FilterManager {
-    public static List<Item> filter(List<Item> list){
+    private static Scanner sc = new Scanner(System.in);
+    private static List<Item> result = new ArrayList<>();
+    private static Set menu(){
         System.out.println("Choose fields to filter by:");
         System.out.println("1. Item id");
         System.out.println("2. Name");
@@ -20,7 +22,7 @@ public class FilterManager {
         System.out.println("\nEnter numbers (enter 14 to stop and Enter buttons):");
 
         int[] arr = new int[13];
-        Scanner sc = new Scanner(System.in);
+
         int i = 0;
         while(true){
             int n = sc.nextInt();
@@ -47,10 +49,15 @@ public class FilterManager {
             s.add(k);
         }
 
+        return s;
+    }
+
+        
+    public static List<Item> filter(List<Item> list){
+
+        Set s = menu();
         List<Item> result = new ArrayList<>(list);
         int choice = 0;
-
-
         List<Integer> fields = new ArrayList<>(s);
         for(int j = 0; j < s.size(); j++){
             switch (fields.get(j)){
