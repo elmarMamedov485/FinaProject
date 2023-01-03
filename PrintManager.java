@@ -11,7 +11,7 @@ import java.util.Set;
 public class PrintManager {
 
     //prints entities of a given list
-    public static void printList(List<Item> list){
+    private static void printList(List<Item> list){
         int i;
         
         for(i = 0; i < list.size(); i++){
@@ -23,6 +23,10 @@ public class PrintManager {
 
     //lists all entities
     public static void listAll(List<Item> list){
+        if(list == null){
+            System.out.println("List is empty!");
+            return;
+        }
         printChosenFields(list);
     }
 

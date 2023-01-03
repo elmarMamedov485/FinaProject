@@ -65,7 +65,7 @@ public class ConvertManager {
                 boolean sellable_online;
                 boolean other_colors;
                 
-                if(str.get(6) == "TRUE"){
+                if(str.get(6).equals("True")){
                     sellable_online = true;
                 }
                 else{

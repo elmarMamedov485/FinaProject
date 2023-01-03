@@ -1,9 +1,4 @@
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class SortManager {
     public static void sort(List<Item> list){
@@ -54,20 +49,23 @@ public class SortManager {
         sortMapDsc.put("Width", (Item i1, Item i2) -> {return i2.getWidth() - i1.getWidth();});
 
         Scanner sc = new Scanner(System.in);
-        int n; 
+        int n = 0;
+        int order = 0;
+        try {
+            System.out.println("Enter field(number):");
+            n = sc.nextInt();
 
-        System.out.println("Enter field(number):");
-        n = sc.nextInt();
+            System.out.println("Choose order: ");
+            System.out.println("1.Ascending");
+            System.out.println("2.Descending");
 
-        System.out.println("Choose order: ");
-        System.out.println("1.Ascending");
-        System.out.println("2.Descending");
 
-        int order; 
 
-        System.out.println("Enter order(number)");
-        order = sc.nextInt();
-
+            System.out.println("Enter order(number)");
+            order = sc.nextInt();
+        }catch(InputMismatchException e){
+            System.out.println("Wrong input!");
+        }
         switch(order){
             case 1:
             switch(n){
