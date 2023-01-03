@@ -1,9 +1,9 @@
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class FilterManager {
+public class FilterManager extends SearchManager{
     private static Scanner sc = new Scanner(System.in);
-    private static List<Item> result = new ArrayList<>();
+    private static List<Item> result;
     private static Set menu(){
         System.out.println("Choose fields to filter by:");
         System.out.println("1. Item id");
@@ -51,278 +51,256 @@ public class FilterManager {
 
         return s;
     }
+    private static List<Item> filterItemId(List<Item> list){
+        result = new ArrayList<>(list);
+        int choice = chooseFilter();
 
-        
+        switch (choice) {
+            case 1 -> {
+                result = SearchManager.searchItemId(list);
+            }
+            case 2 -> {
+                System.out.println("Enter number:");
+                int n = sc.nextInt();
+                result = result.stream().filter(a -> a.getItemId() > n).collect(Collectors.toList());
+            }
+            case 3 -> {
+                System.out.println("Enter number:");
+                int n = sc.nextInt();
+                result = result.stream().filter(a -> a.getItemId() < n).collect(Collectors.toList());
+            }
+            case 4 -> {
+                System.out.println("Enter number:");
+                int n = sc.nextInt();
+                result = result.stream().filter(a -> a.getItemId() >= n).collect(Collectors.toList());
+            }
+            case 5 -> {
+                System.out.println("Enter number:");
+                int n = sc.nextInt();
+                result = result.stream().filter(a -> a.getItemId() <= n).collect(Collectors.toList());
+            }
+            case 6 -> {
+                System.out.println("Enter lower boundary:");
+                int n = sc.nextInt();
+                System.out.println("Enter upper boundary:");
+                int n1 = sc.nextInt();
+                result = result.stream().filter(a -> a.getItemId() < n1 && a.getItemId() > n).collect(Collectors.toList());
+            }
+
+            default -> throw new IllegalStateException("Unexpected value: " + choice);
+        }
+        return result;
+    }
+    private static List<Item> filterPrice(List<Item> list){
+        result = new ArrayList<>(list);
+        int choice = chooseFilter();
+
+        switch (choice) {
+            case 1 -> {
+                result = searchCategory(list);
+            }
+            case 2 -> {
+                System.out.println("Enter number:");
+                int n = sc.nextInt();
+                result = result.stream().filter(a -> a.getPrice() > n).collect(Collectors.toList());
+            }
+            case 3 -> {
+                System.out.println("Enter number:");
+                int n = sc.nextInt();
+                result = result.stream().filter(a -> a.getPrice() < n).collect(Collectors.toList());
+            }
+            case 4 -> {
+                System.out.println("Enter number:");
+                int n = sc.nextInt();
+                result = result.stream().filter(a -> a.getPrice() >= n).collect(Collectors.toList());
+            }
+            case 5 -> {
+                System.out.println("Enter number:");
+                int n = sc.nextInt();
+                result = result.stream().filter(a -> a.getPrice() <= n).collect(Collectors.toList());
+            }
+            case 6 -> {
+                System.out.println("Enter lower boundary:");
+                int n = sc.nextInt();
+                System.out.println("Enter upper boundary:");
+                int n1 = sc.nextInt();
+                result = result.stream().filter(a -> a.getPrice() < n1 && a.getPrice() > n).collect(Collectors.toList());
+            }
+
+            default -> throw new IllegalStateException("Unexpected value: " + choice);
+        }
+        return result;
+    }
+    private static List<Item> filterDepth(List<Item> list){
+        int  choice = chooseFilter();
+
+        switch (choice) {
+            case 1 -> {
+                result = searchDepth(list);
+            }
+            case 2 -> {
+                System.out.println("Enter number:");
+                int n = sc.nextInt();
+                result = result.stream().filter(a -> a.getDepth() > n).collect(Collectors.toList());
+            }
+            case 3 -> {
+                System.out.println("Enter number:");
+                int n = sc.nextInt();
+                result = result.stream().filter(a -> a.getDepth() < n).collect(Collectors.toList());
+            }
+            case 4 -> {
+                System.out.println("Enter number:");
+                int n = sc.nextInt();
+                result = result.stream().filter(a -> a.getDepth() >= n).collect(Collectors.toList());
+            }
+            case 5 -> {
+                System.out.println("Enter number:");
+                int n = sc.nextInt();
+                result = result.stream().filter(a -> a.getDepth() <= n).collect(Collectors.toList());
+            }
+            case 6 -> {
+                System.out.println("Enter lower boundary:");
+                int n = sc.nextInt();
+                System.out.println("Enter upper boundary:");
+                int n1 = sc.nextInt();
+                result = result.stream().filter(a -> a.getDepth() < n1 && a.getDepth() > n).collect(Collectors.toList());
+            }
+
+            default -> throw new IllegalStateException("Unexpected value: " + choice);
+        }
+        return result;
+    }
+    private static List<Item> filterHeight(List<Item> list){
+        result = new ArrayList<>(list);
+        int choice = chooseFilter();
+
+        switch (choice) {
+            case 1 -> {
+               result = searchHeight(list);
+            }
+            case 2 -> {
+                System.out.println("Enter number:");
+                int n = sc.nextInt();
+                result = result.stream().filter(a -> a.getHeight() > n).collect(Collectors.toList());
+            }
+            case 3 -> {
+                System.out.println("Enter number:");
+                int n = sc.nextInt();
+                result = result.stream().filter(a -> a.getHeight() < n).collect(Collectors.toList());
+            }
+            case 4 -> {
+                System.out.println("Enter number:");
+                int n = sc.nextInt();
+                result = result.stream().filter(a -> a.getHeight() >= n).collect(Collectors.toList());
+            }
+            case 5 -> {
+                System.out.println("Enter number:");
+                int n = sc.nextInt();
+                result = result.stream().filter(a -> a.getHeight() <= n).collect(Collectors.toList());
+            }
+            case 6 -> {
+                System.out.println("Enter lower boundary:");
+                int n = sc.nextInt();
+                System.out.println("Enter upper boundary:");
+                int n1 = sc.nextInt();
+                result = result.stream().filter(a -> (a.getHeight() > n && a.getHeight() < n1)).collect(Collectors.toList());
+            }
+
+            default -> throw new IllegalStateException("Unexpected value: " + choice);
+        }
+        return result;
+    }
+    private static List<Item> filterWidth(List<Item> list){
+        result = new ArrayList<>(list);
+        int choice = chooseFilter();
+
+        switch (choice) {
+            case 1 -> {
+                result = searchWidth(list);
+            }
+            case 2 -> {
+                System.out.println("Enter number:");
+                int n = sc.nextInt();
+                result = result.stream().filter(a -> a.getWidth() > n).collect(Collectors.toList());
+            }
+            case 3 -> {
+                System.out.println("Enter number:");
+                int n = sc.nextInt();
+                result = result.stream().filter(a -> a.getWidth() < n).collect(Collectors.toList());
+            }
+            case 4 -> {
+                System.out.println("Enter number:");
+                int n = sc.nextInt();
+                result = result.stream().filter(a -> a.getWidth() >= n).collect(Collectors.toList());
+            }
+            case 5 -> {
+                System.out.println("Enter number:");
+                int n = sc.nextInt();
+                result = result.stream().filter(a -> a.getWidth() <= n).collect(Collectors.toList());
+            }
+            case 6 -> {
+                System.out.println("Enter lower boundary:");
+                int n = sc.nextInt();
+                System.out.println("Enter upper boundary:");
+                int n1 = sc.nextInt();
+                result = result.stream().filter(a -> a.getWidth() < n1 && a.getWidth() > n).collect(Collectors.toList());
+            }
+
+            default -> throw new IllegalStateException("Unexpected value: " + choice);
+        }
+        return result;
+    }
     public static List<Item> filter(List<Item> list){
 
         Set s = menu();
-        List<Item> result = new ArrayList<>(list);
+        List<Item> finalResult = new ArrayList<>(list);
         int choice = 0;
         List<Integer> fields = new ArrayList<>(s);
         for(int j = 0; j < s.size(); j++){
             switch (fields.get(j)){
                 case 1:
-                    choice = chooseFilter();
-
-                    switch (choice) {
-                        case 1 -> {
-                            System.out.println("Enter number:");
-                            int n = sc.nextInt();
-                            result = result.stream().filter(a -> a.getItemId() == n).collect(Collectors.toList());
-                        }
-                        case 2 -> {
-                            System.out.println("Enter number:");
-                            int n = sc.nextInt();
-                            result = result.stream().filter(a -> a.getItemId() > n).collect(Collectors.toList());
-                        }
-                        case 3 -> {
-                            System.out.println("Enter number:");
-                            int n = sc.nextInt();
-                            result = result.stream().filter(a -> a.getItemId() < n).collect(Collectors.toList());
-                        }
-                        case 4 -> {
-                            System.out.println("Enter number:");
-                            int n = sc.nextInt();
-                            result = result.stream().filter(a -> a.getItemId() >= n).collect(Collectors.toList());
-                        }
-                        case 5 -> {
-                            System.out.println("Enter number:");
-                            int n = sc.nextInt();
-                            result = result.stream().filter(a -> a.getItemId() <= n).collect(Collectors.toList());
-                        }
-                        case 6 -> {
-                            System.out.println("Enter lower boundary:");
-                            int n = sc.nextInt();
-                            System.out.println("Enter upper boundary:");
-                            int n1 = sc.nextInt();
-                            result = result.stream().filter(a -> a.getItemId() < n1 && a.getItemId() > n).collect(Collectors.toList());
-                        }
-
-                        default -> throw new IllegalStateException("Unexpected value: " + choice);
-                    }
+                    finalResult =  filterItemId(finalResult);
                     break;
                 case 2:
-                    sc.nextLine();
-                    System.out.println("Enter name:");
-                    String name = sc.nextLine();
-
-                    result = result.stream().filter(a -> a.getName().contains(name)).collect(Collectors.toList());
+                    finalResult = searchName(finalResult);
                     break;
                 case 3:
-                    sc.nextLine();
-                    System.out.println("Enter category:");
-                    String category = sc.nextLine();
-
-                    result = result.stream().filter(a -> a.getCategory().contains(category)).collect(Collectors.toList());
+                    finalResult = searchCategory(finalResult);
                     break;
                 case 4:
-                    choice = chooseFilter();
-
-                    switch (choice) {
-                        case 1 -> {
-                            System.out.println("Enter number:");
-                            int n = sc.nextInt();
-                            result = result.stream().filter(a -> a.getPrice() == n).collect(Collectors.toList());
-                        }
-                        case 2 -> {
-                            System.out.println("Enter number:");
-                            int n = sc.nextInt();
-                            result = result.stream().filter(a -> a.getPrice() > n).collect(Collectors.toList());
-                        }
-                        case 3 -> {
-                            System.out.println("Enter number:");
-                            int n = sc.nextInt();
-                            result = result.stream().filter(a -> a.getPrice() < n).collect(Collectors.toList());
-                        }
-                        case 4 -> {
-                            System.out.println("Enter number:");
-                            int n = sc.nextInt();
-                            result = result.stream().filter(a -> a.getPrice() >= n).collect(Collectors.toList());
-                        }
-                        case 5 -> {
-                            System.out.println("Enter number:");
-                            int n = sc.nextInt();
-                            result = result.stream().filter(a -> a.getPrice() <= n).collect(Collectors.toList());
-                        }
-                        case 6 -> {
-                            System.out.println("Enter lower boundary:");
-                            int n = sc.nextInt();
-                            System.out.println("Enter upper boundary:");
-                            int n1 = sc.nextInt();
-                            result = result.stream().filter(a -> a.getPrice() < n1 && a.getPrice() > n).collect(Collectors.toList());
-                        }
-
-                        default -> throw new IllegalStateException("Unexpected value: " + choice);
-                    }
+                    finalResult = filterPrice(finalResult);
                     break;
                 case 5:
-                    sc.nextLine();
-                    System.out.println("Enter old price:");
-                    String old_price = sc.nextLine();
-
-                    result = result.stream().filter(a -> a.getOldPrice().contains(old_price)).collect(Collectors.toList());
+                    finalResult = searchOldPrice(finalResult);
                     break;
                 case 6:
-                    sc.nextLine();
-                    System.out.println("Enter sellable online(true, false):");
-                    boolean sellable_online = sc.nextBoolean();
-
-                    result = result.stream().filter(a -> Boolean.compare(a.getSellableOnline(), sellable_online) == 0).collect(Collectors.toList());
+                    finalResult = searchSellableOnline(finalResult);
                     break;
                 case 7:
-                    sc.nextLine();
-                    System.out.println("Enter link:");
-                    String link = sc.nextLine();
-
-                    result = result.stream().filter(a -> a.getLink().contains(link)).collect(Collectors.toList());
+                    finalResult = searchLink(finalResult);
                     break;
                 case 8:
-                    sc.nextLine();
-                    System.out.println("Enter other colours(True, False):");
-                    boolean other_colours = sc.nextBoolean();
-
-                    result = result.stream().filter(a -> Boolean.compare(a.getOtherColors(),other_colours) == 0).collect(Collectors.toList());
+                    finalResult = searchOtherColours(finalResult);
                     break;
                 case 9:
-                    sc.nextLine();
-                    System.out.println("Enter short description:");
-                    String short_description =  sc.nextLine();
-
-                    result = result.stream().filter(a -> a.getShortDescription().contains(short_description)).collect(Collectors.toList());
+                    finalResult = searchShortDescription(finalResult);
                     break;
                 case 10:
-                    sc.nextLine();
-                    System.out.println("Enter designer:");
-                    String designer = sc.nextLine();
-
-                    result = result.stream().filter(a -> a.getDesigner().contains(designer)).collect(Collectors.toList());
+                    finalResult = searchDesigner(finalResult);
                     break;
                 case 11:
-                    choice = chooseFilter();
-
-                    switch (choice) {
-                        case 1 -> {
-                            System.out.println("Enter number:");
-                            int n = sc.nextInt();
-                            result = result.stream().filter(a -> a.getDepth() == n).collect(Collectors.toList());
-                        }
-                        case 2 -> {
-                            System.out.println("Enter number:");
-                            int n = sc.nextInt();
-                            result = result.stream().filter(a -> a.getDepth() > n).collect(Collectors.toList());
-                        }
-                        case 3 -> {
-                            System.out.println("Enter number:");
-                            int n = sc.nextInt();
-                            result = result.stream().filter(a -> a.getDepth() < n).collect(Collectors.toList());
-                        }
-                        case 4 -> {
-                            System.out.println("Enter number:");
-                            int n = sc.nextInt();
-                            result = result.stream().filter(a -> a.getDepth() >= n).collect(Collectors.toList());
-                        }
-                        case 5 -> {
-                            System.out.println("Enter number:");
-                            int n = sc.nextInt();
-                            result = result.stream().filter(a -> a.getDepth() <= n).collect(Collectors.toList());
-                        }
-                        case 6 -> {
-                            System.out.println("Enter lower boundary:");
-                            int n = sc.nextInt();
-                            System.out.println("Enter upper boundary:");
-                            int n1 = sc.nextInt();
-                            result = result.stream().filter(a -> a.getDepth() < n1 && a.getDepth() > n).collect(Collectors.toList());
-                        }
-
-                        default -> throw new IllegalStateException("Unexpected value: " + choice);
-                    }
+                    finalResult = filterDepth(finalResult);
                     break;
                 case 12:
-                    choice = chooseFilter();
-
-                    switch (choice) {
-                        case 1 -> {
-                            System.out.println("Enter number:");
-                            int n = sc.nextInt();
-                            result = result.stream().filter(a -> a.getHeight() == n).collect(Collectors.toList());
-                        }
-                        case 2 -> {
-                            System.out.println("Enter number:");
-                            int n = sc.nextInt();
-                            result = result.stream().filter(a -> a.getHeight() > n).collect(Collectors.toList());
-                        }
-                        case 3 -> {
-                            System.out.println("Enter number:");
-                            int n = sc.nextInt();
-                            result = result.stream().filter(a -> a.getHeight() < n).collect(Collectors.toList());
-                        }
-                        case 4 -> {
-                            System.out.println("Enter number:");
-                            int n = sc.nextInt();
-                            result = result.stream().filter(a -> a.getHeight() >= n).collect(Collectors.toList());
-                        }
-                        case 5 -> {
-                            System.out.println("Enter number:");
-                            int n = sc.nextInt();
-                            result = result.stream().filter(a -> a.getHeight() <= n).collect(Collectors.toList());
-                        }
-                        case 6 -> {
-                            System.out.println("Enter lower boundary:");
-                            int n = sc.nextInt();
-                            System.out.println("Enter upper boundary:");
-                            int n1 = sc.nextInt();
-                            result = result.stream().filter(a -> a.getHeight() < n1 && a.getHeight() > n).collect(Collectors.toList());
-                        }
-
-                        default -> throw new IllegalStateException("Unexpected value: " + choice);
-                    }
+                    finalResult = filterHeight(finalResult);
                     break;
                 case 13:
-                    choice = chooseFilter();
-
-                    switch (choice) {
-                        case 1 -> {
-                            System.out.println("Enter number:");
-                            int n = sc.nextInt();
-                            result = result.stream().filter(a -> a.getWidth() == n).collect(Collectors.toList());
-                        }
-                        case 2 -> {
-                            System.out.println("Enter number:");
-                            int n = sc.nextInt();
-                            result = result.stream().filter(a -> a.getWidth() > n).collect(Collectors.toList());
-                        }
-                        case 3 -> {
-                            System.out.println("Enter number:");
-                            int n = sc.nextInt();
-                            result = result.stream().filter(a -> a.getWidth() < n).collect(Collectors.toList());
-                        }
-                        case 4 -> {
-                            System.out.println("Enter number:");
-                            int n = sc.nextInt();
-                            result = result.stream().filter(a -> a.getWidth() >= n).collect(Collectors.toList());
-                        }
-                        case 5 -> {
-                            System.out.println("Enter number:");
-                            int n = sc.nextInt();
-                            result = result.stream().filter(a -> a.getWidth() <= n).collect(Collectors.toList());
-                        }
-                        case 6 -> {
-                            System.out.println("Enter lower boundary:");
-                            int n = sc.nextInt();
-                            System.out.println("Enter upper boundary:");
-                            int n1 = sc.nextInt();
-                            result = result.stream().filter(a -> a.getWidth() < n1 && a.getWidth() > n).collect(Collectors.toList());
-                        }
-
-                        default -> throw new IllegalStateException("Unexpected value: " + choice);
-                    }
+                    finalResult = filterWidth(finalResult);
                     break;
             }
-
-            //System.out.println(result.toString())
         }
 
-        return result;
+        return finalResult;
     }
 
     //enables user to choose filter for numbers

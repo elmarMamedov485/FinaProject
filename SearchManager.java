@@ -32,7 +32,7 @@ public class SearchManager {
         return n;
     }
 
-    private static List<Item>  searchItemId(List<Item> list){
+    protected static List<Item>  searchItemId(List<Item> list){
         System.out.println("Enter item id: ");
         int item_id = sc.nextInt();
 
@@ -40,7 +40,7 @@ public class SearchManager {
 
         return result;
     }
-    private static List<Item>  searchName(List<Item> list){
+    protected static List<Item>  searchName(List<Item> list){
         System.out.println("Enter name:");
         String name = sc.nextLine();
 
@@ -48,7 +48,7 @@ public class SearchManager {
 
         return result;
     }
-    private static List<Item>  searchCategory(List<Item> list){
+    protected static List<Item>  searchCategory(List<Item> list){
         System.out.println("Enter category:");
         String category = sc.nextLine();
 
@@ -56,7 +56,7 @@ public class SearchManager {
 
         return result;
     }
-    private static List<Item>  searchPrice(List<Item> list){
+    protected static List<Item>  searchPrice(List<Item> list){
         System.out.println("Enter price: ");
         float price = sc.nextInt();
 
@@ -64,7 +64,7 @@ public class SearchManager {
 
         return result;
     }
-    private static List<Item>  searchOldPrice(List<Item> list){
+    protected static List<Item>  searchOldPrice(List<Item> list){
         System.out.println("Enter old price:");
         String old_price = sc.nextLine();
 
@@ -72,7 +72,7 @@ public class SearchManager {
 
         return result;
     }
-    private static List<Item>  searchSellableOnline(List<Item> list){
+    protected static List<Item>  searchSellableOnline(List<Item> list){
         System.out.println("Enter sellable online(true, false):");
         boolean sellable_online = sc.nextBoolean();
 
@@ -80,7 +80,7 @@ public class SearchManager {
 
         return result;
     }
-    private static List<Item>  searchLink(List<Item> list){
+    protected static List<Item>  searchLink(List<Item> list){
         System.out.println("Enter link:");
         String link = sc.nextLine();
 
@@ -88,7 +88,7 @@ public class SearchManager {
 
         return result;
     }
-    private static List<Item>  searchOtherColours(List<Item> list){
+    protected static List<Item>  searchOtherColours(List<Item> list){
         System.out.println("Enter other colours(True, False):");
         boolean other_colours = sc.nextBoolean();
 
@@ -96,7 +96,7 @@ public class SearchManager {
 
         return result;
     }
-    private static List<Item>  searchShortDescription(List<Item> list){
+    protected static List<Item>  searchShortDescription(List<Item> list){
         System.out.println("Enter short description:");
         String short_description =  sc.nextLine();
 
@@ -104,7 +104,7 @@ public class SearchManager {
 
         return result;
     }
-    private static List<Item>  searchDesigner(List<Item> list){
+    protected static List<Item>  searchDesigner(List<Item> list){
         System.out.println("Enter designer:");
         String designer = sc.nextLine();
 
@@ -112,7 +112,7 @@ public class SearchManager {
 
         return result;
     }
-    private static List<Item>  searchDepth(List<Item> list){
+    protected static List<Item>  searchDepth(List<Item> list){
         System.out.println("Enter depth: ");
         int depth = sc.nextInt();
 
@@ -120,7 +120,7 @@ public class SearchManager {
 
         return result;
     }
-    private static List<Item>  searchHeight(List<Item> list){
+    protected static List<Item>  searchHeight(List<Item> list){
         System.out.println("Enter height: ");
         int height = sc.nextInt();
 
@@ -128,7 +128,7 @@ public class SearchManager {
 
         return result;
     }
-    private static List<Item>  searchWidth(List<Item> list){
+    protected static List<Item>  searchWidth(List<Item> list){
         System.out.println("Enter width: ");
         int width = sc.nextInt();
 
