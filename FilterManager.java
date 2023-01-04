@@ -263,7 +263,6 @@ public class FilterManager extends SearchManager{
         return result;
     }
     public static List<Item> filter(List<Item> list){
-
         Set s = menu();
         List<Item> finalResult = new ArrayList<>(list);
         int choice = 0;
