@@ -1,8 +1,12 @@
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class FilterManager extends SearchManager{
     private static Scanner sc = new Scanner(System.in);
+    private static String request = new String();
     private static List<Item> result;
     private static Set menu(){
         System.out.println("Choose fields to filter by:");
@@ -43,12 +47,12 @@ public class FilterManager extends SearchManager{
             i++;
         }
 
-        Set s = new HashSet<>();
+        Set<Integer> s = new HashSet<>();
 
         for (int k : arr) {
             s.add(k);
         }
-
+        
         return s;
     }
     private static List<Item> filterItemId(List<Item> list){
@@ -59,26 +63,31 @@ public class FilterManager extends SearchManager{
             case 1 -> {
                 System.out.println("Enter number:");
                 int n = sc.nextInt();
+                request += "Item_id_" + n + "_";
                 result = SearchManager.searchItemId(list, n);
             }
             case 2 -> {
                 System.out.println("Enter number:");
                 int n = sc.nextInt();
+                request += "Item_id_greater_than_" + n + "_";
                 result = result.stream().filter(a -> a.getItemId() > n).collect(Collectors.toList());
             }
             case 3 -> {
                 System.out.println("Enter number:");
                 int n = sc.nextInt();
+                request += "Item_id_less_than_" + n + "_";
                 result = result.stream().filter(a -> a.getItemId() < n).collect(Collectors.toList());
             }
             case 4 -> {
                 System.out.println("Enter number:");
                 int n = sc.nextInt();
+                request += "Item_id_greater_or_equal_to_" + n + "_";
                 result = result.stream().filter(a -> a.getItemId() >= n).collect(Collectors.toList());
             }
             case 5 -> {
                 System.out.println("Enter number:");
                 int n = sc.nextInt();
+                request += "Item_id_less_or_equal_to_" + n + "_";
                 result = result.stream().filter(a -> a.getItemId() <= n).collect(Collectors.toList());
             }
             case 6 -> {
@@ -86,6 +95,7 @@ public class FilterManager extends SearchManager{
                 int n = sc.nextInt();
                 System.out.println("Enter upper boundary:");
                 int n1 = sc.nextInt();
+                request += "Item_id_between_" + n + "_and_" + n1 + "_";
                 result = result.stream().filter(a -> a.getItemId() < n1 && a.getItemId() > n).collect(Collectors.toList());
             }
 
@@ -101,26 +111,31 @@ public class FilterManager extends SearchManager{
             case 1 -> {
                 System.out.println("Enter number:");
                 int n = sc.nextInt();
+                request += "Price_" + n + "_";
                 result = searchPrice(list, n);
             }
             case 2 -> {
                 System.out.println("Enter number:");
                 int n = sc.nextInt();
+                request += "Price_greater_than_" + n + "_";
                 result = result.stream().filter(a -> a.getPrice() > n).collect(Collectors.toList());
             }
             case 3 -> {
                 System.out.println("Enter number:");
                 int n = sc.nextInt();
+                request += "Price_less_than_" + n + "_";
                 result = result.stream().filter(a -> a.getPrice() < n).collect(Collectors.toList());
             }
             case 4 -> {
                 System.out.println("Enter number:");
                 int n = sc.nextInt();
+                request += "Price_greater_or_equal_to_" + n + "_";
                 result = result.stream().filter(a -> a.getPrice() >= n).collect(Collectors.toList());
             }
             case 5 -> {
                 System.out.println("Enter number:");
                 int n = sc.nextInt();
+                request += "Price_less_or_equal_to_" + n + "_";
                 result = result.stream().filter(a -> a.getPrice() <= n).collect(Collectors.toList());
             }
             case 6 -> {
@@ -128,6 +143,7 @@ public class FilterManager extends SearchManager{
                 int n = sc.nextInt();
                 System.out.println("Enter upper boundary:");
                 int n1 = sc.nextInt();
+                request += "Price_between_" + n + "_and_" + n1 + "_";
                 result = result.stream().filter(a -> a.getPrice() < n1 && a.getPrice() > n).collect(Collectors.toList());
             }
 
@@ -142,26 +158,31 @@ public class FilterManager extends SearchManager{
             case 1 -> {
                 System.out.println("Enter number:");
                 int n = sc.nextInt();
+                request += "Depth_equal_to_" + n + "_";
                 result = searchDepth(list, n);
             }
             case 2 -> {
                 System.out.println("Enter number:");
                 int n = sc.nextInt();
+                request += "Depth_greater_than_" + n + "_";
                 result = result.stream().filter(a -> a.getDepth() > n).collect(Collectors.toList());
             }
             case 3 -> {
                 System.out.println("Enter number:");
                 int n = sc.nextInt();
+                request += "Depth_less_than_" + n + "_";
                 result = result.stream().filter(a -> a.getDepth() < n).collect(Collectors.toList());
             }
             case 4 -> {
                 System.out.println("Enter number:");
                 int n = sc.nextInt();
+                request += "Depth_greater_or_equal_to_" + n + "_";
                 result = result.stream().filter(a -> a.getDepth() >= n).collect(Collectors.toList());
             }
             case 5 -> {
                 System.out.println("Enter number:");
                 int n = sc.nextInt();
+                request += "Depth_less_or_equal_to_" + n + "_";
                 result = result.stream().filter(a -> a.getDepth() <= n).collect(Collectors.toList());
             }
             case 6 -> {
@@ -169,6 +190,7 @@ public class FilterManager extends SearchManager{
                 int n = sc.nextInt();
                 System.out.println("Enter upper boundary:");
                 int n1 = sc.nextInt();
+                request += "Depth_between_" + n + "_and_" + n1 +  "_";
                 result = result.stream().filter(a -> a.getDepth() < n1 && a.getDepth() > n).collect(Collectors.toList());
             }
 
@@ -184,27 +206,31 @@ public class FilterManager extends SearchManager{
             case 1 -> {
                 System.out.println("Enter number:");
                 int n = sc.nextInt();
-
-               result = searchHeight(list, n);
+                request += "Height_equal_to_" + n + "_";
+                result = searchHeight(list, n);
             }
             case 2 -> {
                 System.out.println("Enter number:");
                 int n = sc.nextInt();
+                request += "Height_greater_than_" + n + "_";
                 result = result.stream().filter(a -> a.getHeight() > n).collect(Collectors.toList());
             }
             case 3 -> {
                 System.out.println("Enter number:");
                 int n = sc.nextInt();
+                request += "Height_less_than_" + n + "_";
                 result = result.stream().filter(a -> a.getHeight() < n).collect(Collectors.toList());
             }
             case 4 -> {
                 System.out.println("Enter number:");
                 int n = sc.nextInt();
+                request += "Height_greater_or_equal_to_" + n + "_";
                 result = result.stream().filter(a -> a.getHeight() >= n).collect(Collectors.toList());
             }
             case 5 -> {
                 System.out.println("Enter number:");
                 int n = sc.nextInt();
+                request += "Height_less_than_or_equal_to" + n + "_";
                 result = result.stream().filter(a -> a.getHeight() <= n).collect(Collectors.toList());
             }
             case 6 -> {
@@ -212,6 +238,7 @@ public class FilterManager extends SearchManager{
                 int n = sc.nextInt();
                 System.out.println("Enter upper boundary:");
                 int n1 = sc.nextInt();
+                request += "Height_between_" + n + "_and_" + n1 +  "_";
                 result = result.stream().filter(a -> (a.getHeight() > n && a.getHeight() < n1)).collect(Collectors.toList());
             }
 
@@ -227,27 +254,31 @@ public class FilterManager extends SearchManager{
             case 1 -> {
                 System.out.println("Enter number:");
                 int n = sc.nextInt();
-
+                request += "Width_equal_to_" + n + "_";
                 result = searchWidth(list, n);
             }
             case 2 -> {
                 System.out.println("Enter number:");
                 int n = sc.nextInt();
+                request += "Width_greater_than_" + n + "_";
                 result = result.stream().filter(a -> a.getWidth() > n).collect(Collectors.toList());
             }
             case 3 -> {
                 System.out.println("Enter number:");
                 int n = sc.nextInt();
+                request += "Width_less_than_" + n + "_";
                 result = result.stream().filter(a -> a.getWidth() < n).collect(Collectors.toList());
             }
             case 4 -> {
                 System.out.println("Enter number:");
                 int n = sc.nextInt();
+                request += "Width_greater_than_or_equal_to_" + n + "_";
                 result = result.stream().filter(a -> a.getWidth() >= n).collect(Collectors.toList());
             }
             case 5 -> {
                 System.out.println("Enter number:");
                 int n = sc.nextInt();
+                request += "Width_less_than_or_equal_to_" + n + "_";
                 result = result.stream().filter(a -> a.getWidth() <= n).collect(Collectors.toList());
             }
             case 6 -> {
@@ -255,6 +286,7 @@ public class FilterManager extends SearchManager{
                 int n = sc.nextInt();
                 System.out.println("Enter upper boundary:");
                 int n1 = sc.nextInt();
+                request += "Width_between_" + n + "_and_" + n1 +  "_";
                 result = result.stream().filter(a -> a.getWidth() < n1 && a.getWidth() > n).collect(Collectors.toList());
             }
 
@@ -267,6 +299,8 @@ public class FilterManager extends SearchManager{
         List<Item> finalResult = new ArrayList<>(list);
         int choice = 0;
         List<Integer> fields = new ArrayList<>(s);
+        request = new String();
+
         for(int j = 0; j < s.size(); j++){
             switch (fields.get(j)){
                 case 1:
@@ -275,11 +309,13 @@ public class FilterManager extends SearchManager{
                 case 2:
                     System.out.println("Enter name:");
                     String name = sc.nextLine();
+                    request += name + "_";
                     finalResult = searchName(finalResult, name);
                     break;
                 case 3:
                     System.out.println("Enter category:");
                     String category = sc.nextLine();
+                    request += category + "_";
                     finalResult = searchCategory(finalResult, category);
                     break;
                 case 4:
@@ -288,31 +324,37 @@ public class FilterManager extends SearchManager{
                 case 5:
                     System.out.println("Enter old price:");
                     String old_price = sc.nextLine();
+                    request += old_price + "_";
                     finalResult = searchOldPrice(finalResult, old_price);
                     break;
                 case 6:
                     System.out.println("Enter sellable online(true, false):");
                     boolean sellable_online = sc.nextBoolean();
+                    request += Boolean.toString(sellable_online) + "_";
                     finalResult = searchSellableOnline(finalResult, sellable_online);
                     break;
                 case 7:
                     System.out.println("Enter link:");
                     String link = sc.nextLine();
+                    request += link + "_";
                     finalResult = searchLink(finalResult, link);
                     break;
                 case 8:
                     System.out.println("Enter other colours(True, False):");
                     boolean other_colours = sc.nextBoolean();
+                    request += Boolean.toString(other_colours) + "_";
                     finalResult = searchOtherColours(finalResult, other_colours);
                     break;
                 case 9:
                     System.out.println("Enter short description:");
                     String short_description =  sc.nextLine();
+                    request += short_description + "_";
                     finalResult = searchShortDescription(finalResult, short_description);
                     break;
                 case 10:
                     System.out.println("Enter designer:");
                     String designer = sc.nextLine();
+                    request += designer + "_";
                     finalResult = searchDesigner(finalResult, designer);
                     break;
                 case 11:
@@ -329,7 +371,6 @@ public class FilterManager extends SearchManager{
 
         return finalResult;
     }
-
     //enables user to choose filter for numbers
     private static int chooseFilter(){
         System.out.println("Enter your choice (enter number): ");
@@ -345,4 +386,31 @@ public class FilterManager extends SearchManager{
         return n;
     }
 
+    public static void export(List<Item> list){
+        File theDir = new File("src/Exports");
+        if (!theDir.exists()){
+            theDir.mkdirs();
+        }
+
+        File file = new File("src/Exports/"+ request +".csv");
+
+        try{
+            if(!file.exists()){
+                file.createNewFile();
+            }
+            else{
+                System.out.println("File " + file.getName() + " already exists");
+                return;
+            }
+        }catch(IOException e){
+            System.out.println("IOException occurred");
+        }
+        try(FileWriter fw = new FileWriter("src/Exports/"+ request +".csv", true)){
+            for(Item i : list){
+                fw.write(i.toString());
+            }
+        }catch(IOException e){
+            System.out.println("IOException occurred");
+        }
+    }
 }
