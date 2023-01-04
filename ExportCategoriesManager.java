@@ -19,7 +19,11 @@ public class ExportCategoriesManager extends SearchManager{
 
         boolean file_exists = false;
         for(int i = 0; i < categories.size(); i++){
-            File file = new File("src/" + list_categories.get(i) + ".csv");
+            File theDir = new File("src/Categories");
+            if (!theDir.exists()){
+                theDir.mkdirs();
+            }
+            File file = new File("src/Categories/" + list_categories.get(i) + ".csv");
 
             try{
                 if(!file.exists()){
@@ -40,7 +44,7 @@ public class ExportCategoriesManager extends SearchManager{
 
         for(int i = 0; i < categories.size(); i++){
 
-            try(FileWriter fw = new FileWriter("src/" + list_categories.get(i) + ".csv", true)){
+            try(FileWriter fw = new FileWriter("src/Categories/" + list_categories.get(i) + ".csv", true)){
                 List<Item> result = searchCategory(list, list_categories.get(i));
                 fw.write("item_id, name, category, price, old_price, sellable_online, link, other_colors, short_description, designer, depth, height, width");
                 for(int j = 0; j < result.size(); j++){
