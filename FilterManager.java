@@ -274,31 +274,47 @@ public class FilterManager extends SearchManager{
                     finalResult =  filterItemId(finalResult);
                     break;
                 case 2:
-                    finalResult = searchName(finalResult);
+                    System.out.println("Enter name:");
+                    String name = sc.nextLine();
+                    finalResult = searchName(finalResult, name);
                     break;
                 case 3:
-                    finalResult = searchCategory(finalResult);
+                    System.out.println("Enter category:");
+                    String category = sc.nextLine();
+                    finalResult = searchCategory(finalResult, category);
                     break;
                 case 4:
                     finalResult = filterPrice(finalResult);
                     break;
                 case 5:
-                    finalResult = searchOldPrice(finalResult);
+                    System.out.println("Enter old price:");
+                    String old_price = sc.nextLine();
+                    finalResult = searchOldPrice(finalResult, old_price);
                     break;
                 case 6:
-                    finalResult = searchSellableOnline(finalResult);
+                    System.out.println("Enter sellable online(true, false):");
+                    boolean sellable_online = sc.nextBoolean();
+                    finalResult = searchSellableOnline(finalResult, sellable_online);
                     break;
                 case 7:
-                    finalResult = searchLink(finalResult);
+                    System.out.println("Enter link:");
+                    String link = sc.nextLine();
+                    finalResult = searchLink(finalResult, link);
                     break;
                 case 8:
-                    finalResult = searchOtherColours(finalResult);
+                    System.out.println("Enter other colours(True, False):");
+                    boolean other_colours = sc.nextBoolean();
+                    finalResult = searchOtherColours(finalResult, other_colours);
                     break;
                 case 9:
-                    finalResult = searchShortDescription(finalResult);
+                    System.out.println("Enter short description:");
+                    String short_description =  sc.nextLine();
+                    finalResult = searchShortDescription(finalResult, short_description);
                     break;
                 case 10:
-                    finalResult = searchDesigner(finalResult);
+                    System.out.println("Enter designer:");
+                    String designer = sc.nextLine();
+                    finalResult = searchDesigner(finalResult, designer);
                     break;
                 case 11:
                     finalResult = filterDepth(finalResult);

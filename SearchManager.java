@@ -173,7 +173,7 @@ public class SearchManager {
             case 13:
                 System.out.println("Enter width: ");
                 int width = sc.nextInt();
-                searchResult = searchWidth(list);
+                searchResult = searchWidth(list, width);
                 break;
             default:
                 throw new IllegalStateException("Unexpected value: " + n);
