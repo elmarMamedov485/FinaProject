@@ -1,7 +1,12 @@
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.*;
 
 public class SortManager {
-    public static void sort(List<Item> list){
+    private static String request = new String();
+    public static List<Item> sort(List<Item> list){
+        request = new String();
         System.out.println("Choose field to sort by:");
         System.out.println("1. All fields");
         System.out.println("2. Item id");
@@ -76,45 +81,59 @@ public class SortManager {
                             .thenComparing(Item::getLink).thenComparing(Item::getOtherColors)
                             .thenComparing(Item::getShortDescription).thenComparing(Item::getDesigner)
                             .thenComparing(Item::getDepth).thenComparing(Item::getHeight).thenComparing(Item::getWidth));
+                    request += "Sort_all_ascending_order";
                     break;
                 case 2:
                     list.sort(sortMapAsc.get("Item id"));
+                    request += "Sort_item_id_ascending_order";
                     break;
                 case 3:
                     list.sort(sortMapAsc.get("Name"));
+                    request += "Sort_name_ascending_order";
                     break;
                 case 4:
                     list.sort(sortMapAsc.get("Category"));
+                    request += "Sort_category_ascending_order";
                     break;
                 case 5:
                     list.sort(sortMapAsc.get("Price"));
+                    request += "Sort_price_ascending_order";
                     break;
                 case 6:
                     list.sort(sortMapAsc.get("Old Price"));
+                    request += "Sort_old_price_ascending_order";
                     break;
                 case 7:
                     list.sort(sortMapAsc.get("Sellable Online"));
+                    request += "Sort_sellable_online_ascending_order";
                     break;
                 case 8:
                     list.sort(sortMapAsc.get("Link"));
+                    request += "Sort_link_ascending_order";
                     break;
                 case 9:
                     list.sort(sortMapAsc.get("Other colours"));
+                    request += "Sort_other_colours_ascending_order";
                     break;
                 case 10:
                     list.sort(sortMapAsc.get("Short description"));
+                    request += "Sort_short_description_ascending_order";
                     break;
                 case 11:
                     list.sort(sortMapAsc.get("Designer"));
+                    request += "Sort_designer_ascending_order";
                     break;
                 case 12:
                     list.sort(sortMapAsc.get("Depth"));
+                    request += "Sort_depth_ascending_order";
                     break;
                 case 13:
                     list.sort(sortMapAsc.get("Height"));
+                    request += "Sort_height_ascending_order";
                     break;
                 case 14:
                     list.sort(sortMapAsc.get("Width"));
+                    request += "Sort_width_ascending_order";
                     break;
                 default:
                     throw new IllegalStateException("Unexpected value: " + n);
@@ -128,45 +147,59 @@ public class SortManager {
                                 .thenComparing(Item::getOldPrice).thenComparing(Item::getSellableOnline)
                                 .thenComparing(Item::getLink).thenComparing(Item::getOtherColors)
                                 .thenComparing(Item::getShortDescription).thenComparing(Item::getDesigner).reversed());
+                        request += "Sort_all_descending_order";
                         break;
                     case 2:
                         list.sort(sortMapDsc.get("Item id"));
+                        request += "Sort_item_id_descending_order";
                         break;
                     case 3:
                         list.sort(sortMapDsc.get("Name"));
+                        request += "Sort_name_descending_order";
                         break;
                     case 4:
                         list.sort(sortMapDsc.get("Category"));
+                        request += "Sort_category_descending_order";
                         break;
                     case 5:
                         list.sort(sortMapDsc.get("Price"));
+                        request += "Sort_price_descending_order";
                         break;
                     case 6:
                         list.sort(sortMapDsc.get("Old Price"));
+                        request += "Sort_old_price_descending_order";
                         break;
                     case 7:
                         list.sort(sortMapDsc.get("Sellable Online"));
+                        request += "Sort_sellable_online_descending_order";
                         break;
                     case 8:
                         list.sort(sortMapDsc.get("Link"));
+                        request += "Sort_link_descending_order";
                         break;
                     case 9:
                         list.sort(sortMapDsc.get("Other colours"));
+                        request += "Sort_other_colours_descending_order";
                         break;
                     case 10:
                         list.sort(sortMapDsc.get("Short description"));
+                        request += "Sort_short_description_descending_order";
                         break;
                     case 11:
                         list.sort(sortMapDsc.get("Designer"));
+                        request += "Sort_designer_descending_order";
                         break;
                     case 12:
                         list.sort(sortMapDsc.get("Depth"));
+                        request += "Sort_depth_descending_order";
                         break;
                     case 13:
                         list.sort(sortMapDsc.get("Height"));
+                        request += "Sort_height_descending_order";
                         break;
                     case 14:
                         list.sort(sortMapDsc.get("Width"));
+                        request += "Sort_width_descending_order";
                         break;
                     default:
                         throw new IllegalStateException("Unexpected value: " + n);
@@ -175,6 +208,34 @@ public class SortManager {
                 default:
                     throw new IllegalStateException("Unexpected value: " + n);
         }
-        
+
+        return list;
+    }
+    public static void export(List<Item> list){
+        File theDir = new File("src/Exports");
+        if (!theDir.exists()){
+            theDir.mkdirs();
+        }
+
+        File file = new File("src/Exports/"+ request +".csv");
+
+        try{
+            if(!file.exists()){
+                file.createNewFile();
+            }
+            else{
+                System.out.println("File " + file.getName() + " already exists");
+                return;
+            }
+        }catch(IOException e){
+            System.out.println("IOException occurred");
+        }
+        try(FileWriter fw = new FileWriter("src/Exports/"+ request +".csv", true)){
+            for(Item i : list){
+                fw.write(i.toString());
+            }
+        }catch(IOException e){
+            System.out.println("IOException occurred");
+        }
     }
 }

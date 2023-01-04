@@ -52,7 +52,7 @@ public class FilterManager extends SearchManager{
         for (int k : arr) {
             s.add(k);
         }
-        
+
         return s;
     }
     private static List<Item> filterItemId(List<Item> list){
