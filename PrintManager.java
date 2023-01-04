@@ -9,6 +9,35 @@ import java.util.Set;
 
 
 public class PrintManager {
+    public static void listMenu(List<Item> list){
+        int choice = 0;
+
+        System.out.println("\n\n////////////////////////////////////////");
+        System.out.println("1.List all");
+        System.out.println("2.List random");
+        System.out.println("3.List top");
+        System.out.println("4.List bottom");
+        System.out.println("Enter one number (enter 15 to go back): ");
+        Scanner sc = new Scanner(System.in);
+        choice = sc.nextInt();
+
+        switch(choice){
+            case 1:
+                listAll(list);
+                return;
+            case 2:
+                listRandom(list);
+                return;
+            case 3:
+                listTop(list);
+                return;
+            case 4:
+                listBottom(list);
+                return;
+            default:
+                System.out.println("Wrong number");
+        }
+    }
 
     //prints entities of a given list
     private static void printList(List<Item> list){
@@ -22,7 +51,7 @@ public class PrintManager {
     }
 
     //lists all entities
-    public static void listAll(List<Item> list){
+    private static void listAll(List<Item> list){
         if(list == null){
             System.out.println("List is empty!");
             return;
@@ -31,7 +60,7 @@ public class PrintManager {
     }
 
     //lists 20 random entities
-    public static void listRandom(List<Item> list){
+    private static void listRandom(List<Item> list){
         List<Item> newList = new ArrayList<>();
 
         for(int i = 0; i < 20; i++){
@@ -43,7 +72,7 @@ public class PrintManager {
     }
 
     //lists top 20 entities
-    public static void listTop(List<Item> list){
+    private static void listTop(List<Item> list){
         List<Item> newList = new ArrayList<>();
 
         for(int i = 0; i < 20; i++){
@@ -54,7 +83,7 @@ public class PrintManager {
     }
 
     //lists bottom 20 entities
-    public static void listBottom(List<Item> list){
+    private static void listBottom(List<Item> list){
         List<Item> newList = new ArrayList<>();
 
         for(int i = list.size() - 20; i < list.size(); i++){
@@ -163,7 +192,7 @@ public class PrintManager {
                 System.out.println();
 
                 if(j == list.size() - 1){
-                    System.out.println("\n" + (j + 1) + " entities listed");
+                    System.out.println("\n" + j + " entities listed");
                 }
             }
         }

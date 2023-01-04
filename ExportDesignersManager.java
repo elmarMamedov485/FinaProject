@@ -52,5 +52,7 @@ public class ExportDesignersManager {
         }catch(IOException e){
             System.out.println("IOException occurred");
         }
+
+        System.out.println("Exported");
     }
 }

@@ -8,6 +8,8 @@ public class FilterManager extends SearchManager{
     private static Scanner sc = new Scanner(System.in);
     private static String request = new String();
     private static List<Item> result;
+
+    public static String getRequest(){return request;}
     private static Set menu(){
         System.out.println("Choose fields to filter by:");
         System.out.println("1. Item id");
@@ -23,7 +25,7 @@ public class FilterManager extends SearchManager{
         System.out.println("11. Depth");
         System.out.println("12. Height");
         System.out.println("13. Width");
-        System.out.println("\nEnter numbers (enter 14 to stop and Enter buttons):");
+        System.out.println("\nEnter numbers (enter 15 to stop and Enter buttons):");
 
         int[] arr = new int[13];
 
@@ -31,13 +33,13 @@ public class FilterManager extends SearchManager{
         while(true){
             int n = sc.nextInt();
 
-            if(n == 14){
+            if(n == 15){
                 break;
             }
             if(i >= 13){
                 break;
             }
-            if(n > 14){
+            if(n > 14 && n != 165){
                 System.out.println("Wrong number");
                 continue;
             }
@@ -304,68 +306,82 @@ public class FilterManager extends SearchManager{
         for(int j = 0; j < s.size(); j++){
             switch (fields.get(j)){
                 case 1:
+                    sc.nextLine();
                     finalResult =  filterItemId(finalResult);
                     break;
                 case 2:
+                    sc.nextLine();
                     System.out.println("Enter name:");
                     String name = sc.nextLine();
                     request += name + "_";
                     finalResult = searchName(finalResult, name);
                     break;
                 case 3:
+                    sc.nextLine();
                     System.out.println("Enter category:");
                     String category = sc.nextLine();
                     request += category + "_";
                     finalResult = searchCategory(finalResult, category);
                     break;
                 case 4:
+                    sc.nextLine();
                     finalResult = filterPrice(finalResult);
                     break;
                 case 5:
+                    sc.nextLine();
                     System.out.println("Enter old price:");
                     String old_price = sc.nextLine();
                     request += old_price + "_";
                     finalResult = searchOldPrice(finalResult, old_price);
                     break;
                 case 6:
+                    sc.nextLine();
                     System.out.println("Enter sellable online(true, false):");
                     boolean sellable_online = sc.nextBoolean();
                     request += Boolean.toString(sellable_online) + "_";
                     finalResult = searchSellableOnline(finalResult, sellable_online);
                     break;
                 case 7:
+                    sc.nextLine();
                     System.out.println("Enter link:");
                     String link = sc.nextLine();
                     request += link + "_";
                     finalResult = searchLink(finalResult, link);
                     break;
                 case 8:
+                    sc.nextLine();
                     System.out.println("Enter other colours(True, False):");
                     boolean other_colours = sc.nextBoolean();
                     request += Boolean.toString(other_colours) + "_";
                     finalResult = searchOtherColours(finalResult, other_colours);
                     break;
                 case 9:
+                    sc.nextLine();
                     System.out.println("Enter short description:");
                     String short_description =  sc.nextLine();
                     request += short_description + "_";
                     finalResult = searchShortDescription(finalResult, short_description);
                     break;
                 case 10:
+                    sc.nextLine();
                     System.out.println("Enter designer:");
                     String designer = sc.nextLine();
                     request += designer + "_";
                     finalResult = searchDesigner(finalResult, designer);
                     break;
                 case 11:
+                    sc.nextLine();
                     finalResult = filterDepth(finalResult);
                     break;
                 case 12:
+                    sc.nextLine();
                     finalResult = filterHeight(finalResult);
                     break;
                 case 13:
+                    sc.nextLine();
                     finalResult = filterWidth(finalResult);
                     break;
+
             }
         }
 
@@ -386,31 +402,5 @@ public class FilterManager extends SearchManager{
         return n;
     }
 
-    public static void export(List<Item> list){
-        File theDir = new File("src/Exports");
-        if (!theDir.exists()){
-            theDir.mkdirs();
-        }
 
-        File file = new File("src/Exports/"+ request +".csv");
-
-        try{
-            if(!file.exists()){
-                file.createNewFile();
-            }
-            else{
-                System.out.println("File " + file.getName() + " already exists");
-                return;
-            }
-        }catch(IOException e){
-            System.out.println("IOException occurred");
-        }
-        try(FileWriter fw = new FileWriter("src/Exports/"+ request +".csv", true)){
-            for(Item i : list){
-                fw.write(i.toString());
-            }
-        }catch(IOException e){
-            System.out.println("IOException occurred");
-        }
-    }
 }

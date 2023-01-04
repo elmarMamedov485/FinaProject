@@ -5,6 +5,7 @@ import java.util.*;
 
 public class SortManager {
     private static String request = new String();
+    public static String getRequest(){return request;}
     public static List<Item> sort(List<Item> list){
         request = new String();
         System.out.println("Choose field to sort by:");
@@ -57,9 +58,12 @@ public class SortManager {
         int n = 0;
         int order = 0;
         try {
-            System.out.println("Enter field(number):");
+            System.out.println("Enter number (enter 15 to go back):");
             n = sc.nextInt();
 
+            if(n == 15){
+                return list;
+            }
             System.out.println("Choose order: ");
             System.out.println("1.Ascending");
             System.out.println("2.Descending");
@@ -211,31 +215,5 @@ public class SortManager {
 
         return list;
     }
-    public static void export(List<Item> list){
-        File theDir = new File("src/Exports");
-        if (!theDir.exists()){
-            theDir.mkdirs();
-        }
 
-        File file = new File("src/Exports/"+ request +".csv");
-
-        try{
-            if(!file.exists()){
-                file.createNewFile();
-            }
-            else{
-                System.out.println("File " + file.getName() + " already exists");
-                return;
-            }
-        }catch(IOException e){
-            System.out.println("IOException occurred");
-        }
-        try(FileWriter fw = new FileWriter("src/Exports/"+ request +".csv", true)){
-            for(Item i : list){
-                fw.write(i.toString());
-            }
-        }catch(IOException e){
-            System.out.println("IOException occurred");
-        }
-    }
 }

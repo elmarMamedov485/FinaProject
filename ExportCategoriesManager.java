@@ -59,6 +59,6 @@ public class ExportCategoriesManager extends SearchManager{
             }
         }
 
-
+        System.out.println("Exported");
     }
 }

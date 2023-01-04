@@ -6,6 +6,8 @@ import java.util.stream.Collectors;
 
 public class SearchManager {
     private static  Scanner sc = new Scanner(System.in);
+    private static String request = new String();
+    public static String getRequest(){return request;}
     private static int menu(){
         System.out.println("Choose field to search by:");
         System.out.println("1. Item id");
@@ -107,72 +109,79 @@ public class SearchManager {
                 System.out.println("Enter item id: ");
                 int item_id = sc.nextInt();
                 searchResult = searchItemId(list, item_id);
+                request += "Item_id_" + item_id;
                 break;
             case 2:
                 System.out.println("Enter name:");
                 String name = sc.nextLine();
                 searchResult = searchName(list, name);
+                request += "Name_" + name;
                 break;
             case 3:
                 System.out.println("Enter category:");
                 String category = sc.nextLine();
                 searchResult = searchCategory(list, category);
+                request += "Category_" + category;
                 break;
             case 4:
                 System.out.println("Enter price: ");
                 float price = sc.nextFloat();
                 searchResult = searchPrice(list, price);
+                request += "Price" + price;
                 break;
             case 5:
                 System.out.println("Enter old price:");
                 String old_price = sc.nextLine();
-
                 searchResult = searchOldPrice(list, old_price);
+                request += "Old_price_" + old_price;
                 break;
             case 6:
                 System.out.println("Enter sellable online(true, false):");
                 boolean sellable_online = sc.nextBoolean();
-
                 searchResult = searchSellableOnline(list, sellable_online);
+                request += "Sellable_online" + sellable_online;
                 break;
             case 7:
                 System.out.println("Enter link:");
                 String link = sc.nextLine();
-
                 searchResult = searchLink(list, link);
+                request += "Link_" + link;
                 break;
             case 8:
-                System.out.println("Enter other colours(True, False):");
+                System.out.println("Enter other colours(true, false):");
                 boolean other_colours = sc.nextBoolean();
                 searchResult = searchOtherColours(list, other_colours);
+                request += "Other_colours_" + other_colours;
                 break;
             case 9:
                 System.out.println("Enter short description:");
                 String short_description =  sc.nextLine();
-
                 searchResult = searchShortDescription(list, short_description);
+                request += "Short_description" + short_description;
                 break;
             case 10:
                 System.out.println("Enter designer:");
                 String designer = sc.nextLine();
-
                 searchResult = searchDesigner(list, designer);
+                request += "Designer_" + designer;
                 break;
             case 11:
                 System.out.println("Enter depth: ");
                 int depth = sc.nextInt();
-
                 searchResult = searchDepth(list, depth);
+                request += "Depth_" + depth;
                 break;
             case 12:
                 System.out.println("Enter height: ");
                 int height = sc.nextInt();
                 searchResult = searchHeight(list, height);
+                request += "Height_" + height;
                 break;
             case 13:
                 System.out.println("Enter width: ");
                 int width = sc.nextInt();
                 searchResult = searchWidth(list, width);
+                request += "Width_" + width;
                 break;
             default:
                 throw new IllegalStateException("Unexpected value: " + n);
