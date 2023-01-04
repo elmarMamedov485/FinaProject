@@ -57,7 +57,9 @@ public class FilterManager extends SearchManager{
 
         switch (choice) {
             case 1 -> {
-                result = SearchManager.searchItemId(list);
+                System.out.println("Enter number:");
+                int n = sc.nextInt();
+                result = SearchManager.searchItemId(list, n);
             }
             case 2 -> {
                 System.out.println("Enter number:");
@@ -97,7 +99,9 @@ public class FilterManager extends SearchManager{
 
         switch (choice) {
             case 1 -> {
-                result = searchCategory(list);
+                System.out.println("Enter number:");
+                int n = sc.nextInt();
+                result = searchPrice(list, n);
             }
             case 2 -> {
                 System.out.println("Enter number:");
@@ -136,7 +140,9 @@ public class FilterManager extends SearchManager{
 
         switch (choice) {
             case 1 -> {
-                result = searchDepth(list);
+                System.out.println("Enter number:");
+                int n = sc.nextInt();
+                result = searchDepth(list, n);
             }
             case 2 -> {
                 System.out.println("Enter number:");
@@ -176,7 +182,10 @@ public class FilterManager extends SearchManager{
 
         switch (choice) {
             case 1 -> {
-               result = searchHeight(list);
+                System.out.println("Enter number:");
+                int n = sc.nextInt();
+
+               result = searchHeight(list, n);
             }
             case 2 -> {
                 System.out.println("Enter number:");
@@ -216,7 +225,10 @@ public class FilterManager extends SearchManager{
 
         switch (choice) {
             case 1 -> {
-                result = searchWidth(list);
+                System.out.println("Enter number:");
+                int n = sc.nextInt();
+
+                result = searchWidth(list, n);
             }
             case 2 -> {
                 System.out.println("Enter number:");
