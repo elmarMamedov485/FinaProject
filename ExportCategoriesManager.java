@@ -23,6 +23,7 @@ public class ExportCategoriesManager extends SearchManager{
             if (!theDir.exists()){
                 theDir.mkdirs();
             }
+            else{ return;}
             File file = new File("src/Categories/" + list_categories.get(i) + ".csv");
 
             try{
