@@ -154,10 +154,10 @@ public class PrintManager {
                     System.out.print(list.get(j).getDepth() + " ");
                 }
                 if(s.contains(13)){
-                    System.out.print(list.get(j).getWidth() + " ");
+                    System.out.print(list.get(j).getHeight() + " ");
                 }
                 if(s.contains(14)){
-                    System.out.print(list.get(j).getHeight() + " ");
+                    System.out.print(list.get(j).getWidth() + " ");
                 }
 
                 System.out.println();

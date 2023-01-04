@@ -6,7 +6,6 @@ import java.util.stream.Collectors;
 
 public class SearchManager {
     private static  Scanner sc = new Scanner(System.in);
-    private static List<Item> result = new ArrayList<>();
     private static int menu(){
         System.out.println("Choose field to search by:");
         System.out.println("1. Item id");
@@ -38,62 +37,62 @@ public class SearchManager {
         return result;
     }
     protected static List<Item>  searchName(List<Item> list, String name){
-        result = list.stream().filter(a -> a.getName().contains(name)).collect(Collectors.toList());
+        List<Item> result = list.stream().filter(a -> a.getName().contains(name)).collect(Collectors.toList());
 
         return result;
     }
     protected static List<Item>  searchCategory(List<Item> list, String category){
-       result = list.stream().filter(a -> a.getCategory().contains(category)).collect(Collectors.toList());
+        List<Item> result = list.stream().filter(a -> a.getCategory().contains(category)).collect(Collectors.toList());
 
         return result;
     }
     protected static List<Item>  searchPrice(List<Item> list, float price){
-        result = list.stream().filter(a -> a.getPrice() == price).collect(Collectors.toList());
+        List<Item> result = list.stream().filter(a -> a.getPrice() == price).collect(Collectors.toList());
 
         return result;
     }
     protected static List<Item>  searchOldPrice(List<Item> list, String old_price){
-        result = list.stream().filter(a -> a.getOldPrice().contains(old_price)).collect(Collectors.toList());
+        List<Item> result = list.stream().filter(a -> a.getOldPrice().contains(old_price)).collect(Collectors.toList());
 
         return result;
     }
     protected static List<Item>  searchSellableOnline(List<Item> list, boolean sellable_online){
-        result = list.stream().filter(a -> Boolean.compare(a.getSellableOnline(), sellable_online) == 0).collect(Collectors.toList());
+        List<Item> result = list.stream().filter(a -> Boolean.compare(a.getSellableOnline(), sellable_online) == 0).collect(Collectors.toList());
 
         return result;
     }
     protected static List<Item>  searchLink(List<Item> list, String link){
-        result = list.stream().filter(a -> a.getLink().contains(link)).collect(Collectors.toList());
+        List<Item> result = list.stream().filter(a -> a.getLink().contains(link)).collect(Collectors.toList());
 
         return result;
     }
     protected static List<Item>  searchOtherColours(List<Item> list, boolean other_colours){
-        result = list.stream().filter(a -> Boolean.compare(a.getOtherColors(),other_colours) == 0).collect(Collectors.toList());
+        List<Item> result = list.stream().filter(a -> Boolean.compare(a.getOtherColors(),other_colours) == 0).collect(Collectors.toList());
 
         return result;
     }
     protected static List<Item>  searchShortDescription(List<Item> list, String short_description){
-        result = list.stream().filter(a -> a.getShortDescription().contains(short_description)).collect(Collectors.toList());
+        List<Item> result = list.stream().filter(a -> a.getShortDescription().contains(short_description)).collect(Collectors.toList());
 
         return result;
     }
     protected static List<Item>  searchDesigner(List<Item> list, String designer){
-       result = list.stream().filter(a -> a.getDesigner().contains(designer)).collect(Collectors.toList());
+        List<Item> result = list.stream().filter(a -> a.getDesigner().contains(designer)).collect(Collectors.toList());
 
         return result;
     }
     protected static List<Item>  searchDepth(List<Item> list, int depth){
-        result = list.stream().filter(a -> a.getDepth() == depth).collect(Collectors.toList());
+        List<Item> result = list.stream().filter(a -> a.getDepth() == depth).collect(Collectors.toList());
 
         return result;
     }
     protected static List<Item>  searchHeight(List<Item> list, int height){
-        result = list.stream().filter(a -> a.getHeight() == height).collect(Collectors.toList());
+        List<Item> result = list.stream().filter(a -> a.getHeight() == height).collect(Collectors.toList());
 
         return result;
     }
     protected static List<Item>  searchWidth(List<Item> list, int width){
-        result = list.stream().filter(a -> a.getWidth() == width).collect(Collectors.toList());
+        List<Item> result = list.stream().filter(a -> a.getWidth() == width).collect(Collectors.toList());
 
         return result;
     }
