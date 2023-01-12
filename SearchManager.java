@@ -23,11 +23,12 @@ public class SearchManager {
         System.out.println("11. Depth");
         System.out.println("12. Height");
         System.out.println("13. Width");
+        System.out.println("Enter 15 to go back");
         int n = 0;
         try {
            System.out.println("Enter field(number):");
             n = sc.nextInt();
-        }catch (InputMismatchException e){
+        }catch (Exception e){
             System.out.println("Wrong input!");
         }
         return n;

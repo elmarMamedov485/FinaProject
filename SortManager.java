@@ -72,7 +72,7 @@ public class SortManager {
 
             System.out.println("Enter order(number)");
             order = sc.nextInt();
-        }catch(InputMismatchException e){
+        }catch(Exception e){
             System.out.println("Wrong input!");
         }
         switch(order){

@@ -64,7 +64,7 @@ public class Main {
                  case 9:
                      result = list;
                      result = new ArrayList<>(list);
-                     String request = "List";
+                     request = "List";
                      break;
                  default:
                      if(choice != 15){
