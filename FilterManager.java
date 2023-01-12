@@ -39,7 +39,7 @@ public class FilterManager extends SearchManager{
             if(i >= 13){
                 break;
             }
-            if(n > 14 && n != 15){
+            if(n >= 14 && n != 15){
                 System.out.println("Wrong number");
                 continue;
             }

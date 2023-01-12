@@ -61,17 +61,26 @@ public class SortManager {
             System.out.println("Enter number (enter 15 to go back):");
             n = sc.nextInt();
 
-            if(n == 15){
+            if(n ==15){
                 return list;
             }
+            else if(n > 15){
+                System.out.println("Wrong number");
+                return list;
+            }
+
             System.out.println("Choose order: ");
             System.out.println("1.Ascending");
             System.out.println("2.Descending");
 
-
-
             System.out.println("Enter order(number)");
             order = sc.nextInt();
+            if(order != 1 || order != 2){
+                System.out.println("Wrong number");
+                return list;
+            }
+
+
         }catch(Exception e){
             System.out.println("Wrong input!");
         }
