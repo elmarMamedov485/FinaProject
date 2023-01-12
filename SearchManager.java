@@ -28,6 +28,10 @@ public class SearchManager {
         try {
            System.out.println("Enter field(number):");
             n = sc.nextInt();
+
+            if(n == 15) return 0;
+
+            if(n > 13 && n != 15) throw new Exception();
         }catch (Exception e){
             System.out.println("Wrong input!");
         }
@@ -103,7 +107,7 @@ public class SearchManager {
         List<Item> searchResult = new ArrayList<>();
         try{
         int n = menu();
-
+        if(n == 0) return list;
         sc.nextLine();
         switch(n){
             case 1:
@@ -186,7 +190,7 @@ public class SearchManager {
                 break;
             default:
                 throw new IllegalStateException("Unexpected value: " + n);
-        }}catch (InputMismatchException e){
+        }}catch (Exception e){
             System.out.println("Wrong input!");
 
         }
